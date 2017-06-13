@@ -1,3 +1,7 @@
+"""
+A sample Flask app for sending SMS messages.
+"""
+
 from flask import Flask, flash, redirect, render_template, request, url_for
 import nexmo
 
@@ -31,7 +35,7 @@ def index():
 def send_sms():
     """ A POST endpoint that sends an SMS. """
 
-    # Extract the form values: 
+    # Extract the form values:
     to_number = request.form['to_number']
     message = request.form['message']
 
