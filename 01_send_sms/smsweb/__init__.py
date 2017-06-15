@@ -2,11 +2,14 @@
 A sample Flask app for sending SMS messages.
 """
 
+from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, url_for
 import nexmo
 
 from .util import env_var, extract_error
 
+# Load environment variables from a .env file:
+load_dotenv('.env')
 
 # Load in configuration from environment variables:
 NEXMO_API_KEY = env_var('NEXMO_API_KEY')
@@ -20,9 +23,7 @@ nexmo_client = nexmo.Client(
 
 # Initialize Flask:
 app = Flask(__name__)
-
-# We need this for sessions to work - take note of the value!
-app.config['SECRET_KEY'] = 'DO NOT EVER USE IN PRODUCTION'
+app.config['SECRET_KEY'] = env_var('FLASK_SECRET_KEY')
 
 
 @app.route('/')
@@ -46,6 +47,7 @@ def send_sms():
         'text': message,
     })
 
+    # Set a message for the user to see on the next view:
     err = extract_error(result)
     if err is not None:
         flash("There was a problem sending your message: " + err, 'error')

@@ -16,10 +16,9 @@
         <h1>Send an SMS</h1>
 
             {% with messages = get_flashed_messages() %}
-
-                    {% for message in messages %}
-                    <div class="alert alert-warning">{{ message }}</div>
-                    {% endfor %}
+            {% for message in messages %}
+            <div class="alert alert-warning">{{ message }}</div>
+            {% endfor %}
             {% endwith %}
 
             <form action="/send_sms" method="POST">
