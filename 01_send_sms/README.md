@@ -21,7 +21,7 @@ Copy `.env-example` to `.env` and fill it in with your Nexmo credentials and the
 Run the service with:
 
 ```bash
-FLASK_APP=smsweb/__init__.py flask run
+FLASK_APP=smsweb/server.py flask run
 ```
 
 Now if you open up your browser to: [http://localhost:5000/](http://localhost:5000/) you should see a form for sending SMS messages!
